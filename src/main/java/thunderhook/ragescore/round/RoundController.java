@@ -31,12 +31,12 @@ public class RoundController extends BaseController {
 	}
 	
 	@GetMapping(value = "/games/{gameId}/rounds")
-	public List<Round> getRoundsForGame(@PathVariable Long gameId) {
+	public List<Round> findByGame(@PathVariable Long gameId) {
 		return roundRepository.findByGameId(gameId);
 	}
 
 	@PostMapping("/games/{gameId}/rounds")
-	public ResponseEntity<?> createRound(@PathVariable Long gameId, @RequestBody Round round) {
+	public ResponseEntity<?> create(@PathVariable Long gameId, @RequestBody Round round) {
 		Game game = new Game();
 		game.setId(gameId);
 		round.setGame(game);
@@ -46,7 +46,7 @@ public class RoundController extends BaseController {
 	}
 	
 	@DeleteMapping(value = "/games/{gameId}/rounds/{id}")
-	public ResponseEntity<?> deleteScore(@PathVariable Long gameId, @PathVariable Long id) {
+	public ResponseEntity<?> delete(@PathVariable Long gameId, @PathVariable Long id) {
 		Optional<Round> round = roundRepository.findById(id);
 		if (!round.isPresent()) {
 			LOG.warn("Round with id {} does not exist", id);

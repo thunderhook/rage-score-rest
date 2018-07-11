@@ -32,19 +32,19 @@ public class GameController extends BaseController {
 	}
 
 	@GetMapping(value = "/games/{id}")
-	public Game getGame(@PathVariable Long id) {
+	public Game findById(@PathVariable Long id) {
 		return gameService.findById(id).orElseThrow(GameNotFoundException::new);
 	}
 
 	@PostMapping("/games")
-	public ResponseEntity<?> createGame(@RequestBody Game game) {
+	public ResponseEntity<?> create(@RequestBody Game game) {
 		gameService.createGame(game);
 		LOG.info("Created game {}", ReflectionToStringBuilder.toString(game));
 		return ResponseEntity.created(buildCreatedLocation(game.getId())).build();
 	}
 
 	@DeleteMapping(value = "/games/{id}")
-	public ResponseEntity<?> deleteScore(@PathVariable Long id) {
+	public ResponseEntity<?> delete(@PathVariable Long id) {
 		Optional<Game> game = gameService.findById(id);
 		if (!game.isPresent()) {
 			LOG.warn("Game with id {} does not exist", id);
