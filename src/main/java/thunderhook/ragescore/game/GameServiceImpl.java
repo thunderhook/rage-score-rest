@@ -1,5 +1,6 @@
 package thunderhook.ragescore.game;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,8 @@ class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public Game save(Game game) {
+	public Game createGame(Game game) {
+		game.setCreated(LocalDateTime.now());
 		return gameRepository.save(game);
 	}
 
@@ -29,7 +31,7 @@ class GameServiceImpl implements GameService {
 	public void delete(Game game) {
 		gameRepository.delete(game);
 	}
-	
+
 	@Override
 	public void deleteById(Long id) {
 		gameRepository.deleteById(id);

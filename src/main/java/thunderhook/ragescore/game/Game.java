@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import thunderhook.ragescore.round.Round;
 
 @Entity
@@ -19,6 +21,7 @@ public class Game {
 
 	private LocalDateTime created;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "game")
 	private List<Round> rounds;
 

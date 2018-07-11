@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public interface GameService {
 
-	Game save(Game game);
+	Game createGame(Game game);
 
 	Optional<Game> findById(Long id);
 

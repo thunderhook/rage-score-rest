@@ -1,4 +1,4 @@
-package thunderhook.ragescore;
+package thunderhook.ragescore.common;
 
 import java.net.URI;
 

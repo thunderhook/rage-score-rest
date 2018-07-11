@@ -3,10 +3,14 @@ package thunderhook.ragescore.round;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import thunderhook.ragescore.game.Game;
 import thunderhook.ragescore.score.Score;
@@ -18,7 +22,9 @@ public class Round {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "game_id")
 	private Game game;
 
 	private int number;

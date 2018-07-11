@@ -1,6 +1,5 @@
 package thunderhook.ragescore.game;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -15,7 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import thunderhook.ragescore.BaseController;
+import thunderhook.ragescore.common.BaseController;
+import thunderhook.ragescore.game.Game;
+import thunderhook.ragescore.game.GameNotFoundException;
+import thunderhook.ragescore.game.GameService;
 
 @RestController
 public class GameController extends BaseController {
@@ -30,14 +32,13 @@ public class GameController extends BaseController {
 	}
 
 	@GetMapping(value = "/games/{id}")
-	public Game addScore(@PathVariable Long id) {
+	public Game getGame(@PathVariable Long id) {
 		return gameService.findById(id).orElseThrow(GameNotFoundException::new);
 	}
 
 	@PostMapping("/games")
-	public ResponseEntity<?> addGame(@RequestBody Game game) {
-		game.setCreated(LocalDateTime.now());
-		gameService.save(game);
+	public ResponseEntity<?> createGame(@RequestBody Game game) {
+		gameService.createGame(game);
 		LOG.info("Created game {}", ReflectionToStringBuilder.toString(game));
 		return ResponseEntity.created(buildCreatedLocation(game.getId())).build();
 	}
