@@ -2,48 +2,70 @@ package thunderhook.ragescore.round;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import thunderhook.ragescore.game.Game;
 import thunderhook.ragescore.score.Score;
 
+@Entity
 public class Round {
 
-    private Long id;
+	@Id
+	@GeneratedValue
+	private Long id;
 
-    private int number;
+	@ManyToOne
+	private Game game;
 
-    private int numberOfCards;
+	private int number;
 
-    private List<Score> scores;
+	private int numberOfCards;
 
-    public Long getId() {
-        return id;
-    }
+	@Transient // TODO @OneToMany
+	private List<Score> scores;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public int getNumber() {
-        return number;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
+	public Game getGame() {
+		return game;
+	}
 
-    public List<Score> getScores() {
-        return scores;
-    }
+	public void setGame(Game game) {
+		this.game = game;
+	}
 
-    public void setScores(List<Score> scores) {
-        this.scores = scores;
-    }
+	public int getNumber() {
+		return number;
+	}
 
-    public int getNumberOfCards() {
-        return numberOfCards;
-    }
+	public void setNumber(int number) {
+		this.number = number;
+	}
 
-    public void setNumberOfCards(int numberOfCards) {
-        this.numberOfCards = numberOfCards;
-    }
+	public List<Score> getScores() {
+		return scores;
+	}
+
+	public void setScores(List<Score> scores) {
+		this.scores = scores;
+	}
+
+	public int getNumberOfCards() {
+		return numberOfCards;
+	}
+
+	public void setNumberOfCards(int numberOfCards) {
+		this.numberOfCards = numberOfCards;
+	}
 
 }

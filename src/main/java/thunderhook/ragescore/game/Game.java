@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 import thunderhook.ragescore.round.Round;
 
@@ -19,7 +19,7 @@ public class Game {
 
 	private LocalDateTime created;
 
-	@Transient // TODO replace with @OneToMany
+	@OneToMany(mappedBy = "game")
 	private List<Round> rounds;
 
 	public Long getId() {
