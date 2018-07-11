@@ -1,1 +1,2 @@
-# rage-score-rest
+rage-score-rest [![Build Status](https://travis-ci.org/thunderhook/rage-score-rest.svg?branch=master)](https://travis-ci.org/thunderhook/rage-score-rest) [![codecov](https://codecov.io/gh/thunderhook/rage-score-rest/branch/master/graph/badge.svg)](https://codecov.io/gh/thunderhook/rage-score-rest)
+==
