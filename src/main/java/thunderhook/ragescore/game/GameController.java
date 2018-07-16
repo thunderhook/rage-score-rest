@@ -38,7 +38,7 @@ public class GameController extends BaseController {
 
 	@PostMapping("/games")
 	public ResponseEntity<?> create(@RequestBody Game game) {
-		gameService.createGame(game);
+		gameService.create(game);
 		LOG.info("Created game {}", ReflectionToStringBuilder.toString(game));
 		return ResponseEntity.created(buildCreatedLocation(game.getId())).build();
 	}

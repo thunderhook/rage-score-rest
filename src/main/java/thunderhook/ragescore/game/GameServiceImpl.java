@@ -17,7 +17,7 @@ class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public Game createGame(Game game) {
+	public Game create(Game game) {
 		game.setCreated(LocalDateTime.now());
 		return gameRepository.save(game);
 	}

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import thunderhook.ragescore.common.BaseController;
 import thunderhook.ragescore.round.Round;
-import thunderhook.ragescore.round.RoundRepository;
+import thunderhook.ragescore.round.RoundService;
 
 @RestController
 public class ScoreController extends BaseController {
@@ -32,14 +32,14 @@ public class ScoreController extends BaseController {
 
 	private final ScoreRepository scoreRepository;
 
-	private final RoundRepository roundRepository;
+	private final RoundService roundService;
 
 	@Autowired
 	public ScoreController(EntityManager entityManager, ScoreRepository scoreRepository,
-			RoundRepository roundRepository) {
+			RoundService roundService) {
 		this.entityManager = entityManager;
 		this.scoreRepository = scoreRepository;
-		this.roundRepository = roundRepository;
+		this.roundService = roundService;
 	}
 
 	// FIXME
@@ -60,7 +60,7 @@ public class ScoreController extends BaseController {
 			score.setPlayer(entityManager.merge(score.getPlayer()));
 		}
 
-		Round round = roundRepository.findById(roundId).get();
+		Round round = roundService.findById(roundId).get();
 		score.setRound(round);
 		scoreRepository.save(score);
 		LOG.info("Created Score {}", ReflectionToStringBuilder.toString(score));
