@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import thunderhook.ragescore.common.BaseController;
+import thunderhook.ragescore.common.EntityNotFoundException;
 import thunderhook.ragescore.game.Game;
-import thunderhook.ragescore.game.GameNotFoundException;
 import thunderhook.ragescore.game.GameService;
 
 @RestController
@@ -33,7 +33,7 @@ public class GameController extends BaseController {
 
 	@GetMapping(value = "/games/{id}")
 	public Game findById(@PathVariable Long id) {
-		return gameService.findById(id).orElseThrow(GameNotFoundException::new);
+		return gameService.findById(id).orElseThrow(EntityNotFoundException::new);
 	}
 
 	@PostMapping("/games")
